@@ -43,3 +43,41 @@ A modern, fully responsive academic portfolio website that allows lecturers to m
 ```bash
 git clone https://github.com/LeoJ0515/Dynamic-Lecturer-Content-Management-Profile.git
 cd Dynamic-Lecturer-Content-Management-Profile
+```
+
+### Step 2: Create the required tables in Supabase
+```bash
+Open your Supabase project → SQL Editor.
+
+Run the SQL script from the file database.sql (included in this repository) to create all tables:
+users, profile, teaching, research_projects, publications, supervision, awards, appointments, invited_talks, research_areas.
+
+dont forget to insert your own email and password , is bottom there😊
+```
+
+### Step 3: Get your Supabase API credentials
+```bash
+Go to Project Settings → API.
+
+Copy the Project URL and the anon/public key.
+```
+
+### Step 4: Configure database.php & login.php
+```bash
+Open database.php and login.php replace the placeholders:
+
+define('SUPABASE_URL', 'https://your-project.supabase.co');
+define('SUPABASE_KEY', 'your-anon-key');
+
+```
+
+### Step 6: Run locally
+```bash
+Move the project folder to your web server's document root (e.g., C:\xampp\htdocs\LecturerProfile for XAMPP).
+
+Start Apache.
+
+Visit http://localhost/LecturerProfile.
+```
+
+
