@@ -105,18 +105,18 @@ $profileCount = count($profiles);
 
 :root {
     /* Color Hunt Palette: #B5E18B, #F0FFC2, #EAE6BC, #28396C */
-    --deep-blue: #28396C;
+    --deep-blue: #d8e2ff;
     --soft-green: #B5E18B;
     --light-mint: #F0FFC2;
-    --warm-beige: #EAE6BC;
+    --warm-beige: #1e1e1e;
     
     --primary-color: var(--deep-blue);
     --secondary-color: var(--soft-green);
     --accent-color: var(--light-mint);
     --bg-light: var(--warm-beige);
     
-    --text-dark: #1e2a3a;
-    --text-light: #3a4a5a;
+    --text-dark: #ffffff;
+    --text-light: #0f2f4f;
     --card-bg: #ffffff;
     
     --primary-gradient: linear-gradient(135deg, var(--deep-blue) 0%, var(--soft-green) 100%);
@@ -575,6 +575,46 @@ textarea.form-control {
     .edit-card { padding: 1.5rem 1rem; }
     .edit-card h2 { font-size: 1.8rem; }
     .profile-data { padding: 1.5rem; }
+}
+
+/* Make the main form title dark, but leave other headings untouched */
+.edit-card h2 {
+    color: #1e1e1e !important;
+}
+
+/* Make form labels dark */
+.form-label {
+    color: #1e1e1e !important;
+}
+
+/* Make Cancel button text dark */
+.btn-cancel-modern {
+    color: #1e1e1e !important;
+    border-color: #1e1e1e !important;
+}
+.btn-cancel-modern:hover {
+    color: #1e1e1e !important;
+    border-color: #1e1e1e !important;
+}
+
+/* (Optional) Make Back button text dark */
+.btn-back {
+    color: #1e1e1e !important;
+}
+.btn-back:hover {
+    color: white !important;  /* keep white on hover for contrast */
+}
+
+/* Make Save button background dark */
+.btn-save-modern {
+    background: #1e1e1e !important;
+    background-image: none !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+.btn-save-modern:hover {
+    background: #333333 !important;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 </style>
 </head>
