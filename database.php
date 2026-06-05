@@ -2,9 +2,9 @@
 // database.php - Supabase API integration with error handling
 
 // Configuration - Replace with your actual Supabase credentials
-define('SUPABASE_URL', 'https://hglignqegzahrscqnpeu.supabase.co');
-define('SUPABASE_ANON_KEY', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnbGlnbnFlZ3phaHJzY3FucGV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzNzE0NjQsImV4cCI6MjA4ODk0NzQ2NH0.cc2ihTcQEnwhSI25A6oS2OMYVKJ1L4JgVGIoSnA5IwU');
-define('SUPABASE_SERVICE_KEY', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnbGlnbnFlZ3phaHJzY3FucGV1Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MzM3MTQ2NCwiZXhwIjoyMDg4OTQ3NDY0fQ.0QUoj7eiv1zQTY7uhreE57mgVolN9946tfnFTT-xoWM'); // For admin operations
+define('SUPABASE_URL', 'REPLACE_YOUR_CREDENTIAL');
+define('SUPABASE_ANON_KEY', 'REPLACE_YOUR_CREDENTIAL');
+define('SUPABASE_SERVICE_KEY', 'REPLACE_YOUR_CREDENTIAL'); // For admin operations
 
 /**
  * Make a request to Supabase API
