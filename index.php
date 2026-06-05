@@ -997,7 +997,7 @@ $researchAreas = getSupabaseData('research_areas', [], 'display_order.asc') ?: [
                     <h2><i class="bi bi-stars me-2"></i>Other Achievements</h2>
                 </div>
 
-                <!-- Twitter‑style tab navigation with sliding indicator -->
+                <!-- Tab navigation -->
                 <div class="tab-bar">
                     <div class="tab-indicator"></div>
                     <button class="tab-btn active" data-tab="awards">
@@ -1028,7 +1028,8 @@ $researchAreas = getSupabaseData('research_areas', [], 'display_order.asc') ?: [
                                 <?php if (!empty($awardYears)): ?>
                                     <div class="dropdown filter-dropdown" id="awards-year-filter-dropdown">
                                         <button class="btn filter-btn dropdown-toggle" type="button"
-                                            data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                            data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"
+                                            data-bs-boundary="viewport">
                                             <i class="bi bi-funnel-fill"></i> Year
                                         </button>
                                         <ul class="dropdown-menu">
@@ -1090,7 +1091,8 @@ $researchAreas = getSupabaseData('research_areas', [], 'display_order.asc') ?: [
                                 <?php if (!empty($apptStartYears)): ?>
                                     <div class="dropdown filter-dropdown" id="appointments-year-filter-dropdown">
                                         <button class="btn filter-btn dropdown-toggle" type="button"
-                                            data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                            data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"
+                                            data-bs-boundary="viewport">
                                             <i class="bi bi-funnel-fill"></i> Start Year
                                         </button>
                                         <ul class="dropdown-menu">
@@ -1153,7 +1155,8 @@ $researchAreas = getSupabaseData('research_areas', [], 'display_order.asc') ?: [
                                 <?php if (!empty($talkYears)): ?>
                                     <div class="dropdown filter-dropdown" id="talks-year-filter-dropdown">
                                         <button class="btn filter-btn dropdown-toggle" type="button"
-                                            data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                            data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"
+                                            data-bs-boundary="viewport">
                                             <i class="bi bi-funnel-fill"></i> Year
                                         </button>
                                         <ul class="dropdown-menu">
@@ -2961,6 +2964,12 @@ $researchAreas = getSupabaseData('research_areas', [], 'display_order.asc') ?: [
                 alert(msg);
             };
         }
+
+
+
+
+
+
 
 
 

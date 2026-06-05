@@ -2,9 +2,9 @@
 // database.php - Supabase API integration with error handling
 
 // Configuration - Replace with your actual Supabase credentials
-define('SUPABASE_URL', 'REPLACE_YOUR_CREDENTIAL');
-define('SUPABASE_ANON_KEY', 'REPLACE_YOUR_CREDENTIAL');
-define('SUPABASE_SERVICE_KEY', 'REPLACE_YOUR_CREDENTIAL'); // For admin operations
+define('SUPABASE_URL', '');
+define('SUPABASE_ANON_KEY', '');
+define('SUPABASE_SERVICE_KEY', ''); // For admin operations
 
 /**
  * Make a request to Supabase API

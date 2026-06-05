@@ -3,8 +3,8 @@ session_start();
 header('Content-Type: application/json');
 
 // Configuration - Replace with your actual Supabase credentials
-define('SUPABASE_URL', 'REPLACE_YOUR_CREDENTIAL');
-define('SUPABASE_ANON_KEY', 'REPLACE_YOUR_CREDENTIAL');
+define('SUPABASE_URL', '');
+define('SUPABASE_ANON_KEY', '');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['success' => false, 'message' => 'Invalid request method']);
