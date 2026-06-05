@@ -3,8 +3,8 @@ session_start();
 header('Content-Type: application/json');
 
 // Configuration - Replace with your actual Supabase credentials
-define('SUPABASE_URL', 'https://hglignqegzahrscqnpeu.supabase.co');
-define('SUPABASE_ANON_KEY', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhnbGlnbnFlZ3phaHJzY3FucGV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzNzE0NjQsImV4cCI6MjA4ODk0NzQ2NH0.cc2ihTcQEnwhSI25A6oS2OMYVKJ1L4JgVGIoSnA5IwU');
+define('SUPABASE_URL', 'REPLACE_YOUR_CREDENTIAL');
+define('SUPABASE_ANON_KEY', 'REPLACE_YOUR_CREDENTIAL');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['success' => false, 'message' => 'Invalid request method']);
