@@ -61,6 +61,7 @@ Run the SQL script from the file database.sql (included in this repository) to c
 users, profile, teaching, research_projects, publications, supervision, awards, appointments, invited_talks, research_areas.
 
 dont forget to insert your own email and password , is bottom there😊
+and disable RLS
 ```
 
 ### Step 3: Get your Supabase API credentials
