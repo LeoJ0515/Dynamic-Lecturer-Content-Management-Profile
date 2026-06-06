@@ -81,7 +81,7 @@ define('SUPABASE_KEY', 'your-anon-key');
 ```bash
 Move the project folder to your web server's document root (e.g., C:\xampp\htdocs\LecturerProfile for XAMPP).
 Start Apache.
-Visit http://localhost/LecturerProfile.
+Visit http://localhost/LecturerProfile/index.php
 ```
 
 
