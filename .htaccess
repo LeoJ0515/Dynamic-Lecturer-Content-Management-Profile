@@ -1,0 +1,2 @@
+SetEnvIfNoCase User-Agent "^.*(bot|crawler|spider).*$" dont_show_ads
+SetEnv dont_show_ads 1
