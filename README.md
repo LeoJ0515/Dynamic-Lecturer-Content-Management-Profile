@@ -2,7 +2,7 @@
 
 A modern, fully responsive academic portfolio website that allows lecturers to manage their professional profile, teaching experience, research projects, publications, supervision records, awards, appointments, and invited talks — all through a secure admin interface. Data is stored in **Supabase** (PostgreSQL) and the frontend is built with PHP, Bootstrap, and vanilla JavaScript.
 
-[Website Live Demo](https://academicportfolio.kesug.com/index.php) (Currently Down)
+[Website Live Demo](https://academicportfolio.kesug.com/index.php) 
 
 ## 🖼️ Website Screenshot
 <img width="2879" height="1376" alt="image" src="https://github.com/user-attachments/assets/4eba0dd7-682c-490e-8cce-3084908ffd02" />
