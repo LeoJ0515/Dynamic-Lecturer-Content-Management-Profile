@@ -4356,3 +4356,24 @@ html {
         border-radius: 10px;
     }
 }
+
+/* ===== MOBILE: keep the hero box EXACTLY the same shape as on desktop ===== */
+@media (max-width: 768px) {
+  .hero-background-section {
+    height: 0 !important;                /* collapse the fixed vh height */
+    padding-bottom: 28%;                /* 28% = same ratio as 50vh on a typical 1920×1080 screen */
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;             /* still covers the box (no extra cropping) */
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
