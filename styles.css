@@ -46,69 +46,101 @@ body {
     padding-bottom: 0px;
 }
 
-/* ===== INTRO ANIMATION ===== */
+/* ===== 高级感开场动画（延展版 ~4s，静态渐变背景） ===== */
 #intro-animation {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    background: var(--gradient-primary);
+    background: var(--gradient-primary);  /* 静态渐变，无流动 */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    animation: fadeOutZoom 4s ease-in-out forwards;
-    /* 改为 3s，缓动更柔和 */
+    /* 只保留主消失动画 */
+    animation: fadeOutZoom 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 @keyframes fadeOutZoom {
     0% {
         opacity: 1;
-        transform: scale(1) translateY(0);
+        transform: scale(1);
+        filter: blur(0);
+        text-shadow: 0 0 0 transparent;
     }
-
-    70% {
+    65% {
         opacity: 1;
-        transform: scale(1.05) translateY(0);
+        transform: scale(1.03);
+        filter: blur(0);
+        text-shadow: 0 0 0 transparent;
     }
-
+    78% {
+        opacity: 1;
+        transform: scale(1.04);
+        text-shadow: 0 0 40px rgba(255, 255, 255, 0.25);
+    }
     100% {
         opacity: 0;
-        transform: scale(1.2) translateY(-100%);
+        transform: scale(0.96) translateY(-4vh);
+        filter: blur(12px);
         visibility: hidden;
+        text-shadow: 0 0 0 transparent;
     }
 }
 
 .intro-content {
     text-align: center;
     color: white;
-    animation: slideUpFade 1s ease-out;
-}
-
-@keyframes slideUpFade {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .intro-content h1 {
     font-size: clamp(2.2rem, 6vw, 4rem);
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+    animation: revealText 1s 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.intro-content .divider {
+    width: 40px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    margin: 0.8rem auto;
+    transform-origin: center;
+    animation: scaleIn 0.7s 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .intro-content p {
     font-size: clamp(1.1rem, 3vw, 1.4rem);
-    opacity: 0.9;
+    opacity: 0.85;
     font-weight: 300;
+    letter-spacing: 0.08em;
+    animation: revealText 1s 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes revealText {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+        filter: blur(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    to {
+        transform: scaleX(1);
+        opacity: 1;
+    }
 }
 
 /* ===== HEADER (modern, animated, fallback) ===== */
@@ -510,27 +542,70 @@ body {
     color: white;
 }
 
+/* ===== Add Button – Premium ===== */
 .add-btn {
-    background: var(--deep-blue);
+    background: linear-gradient(135deg, var(--deep-blue) 0%, #1e2f5a 100%);
     color: white;
     border: none;
-    border-radius: 40px;
-    padding: 0.7rem 2rem;
+    border-radius: 50px;
+    padding: 0.75rem 2rem;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.8rem;
     cursor: pointer;
-    transition: var(--transition-smooth);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     font-weight: 600;
-    font-size: 0.95rem;
-    box-shadow: var(--shadow-sm);
+    font-size: 0.9rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.3px;
+}
+
+/* Shine effect on hover */
+.add-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.add-btn:hover::before {
+    left: 100%;
 }
 
 .add-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
-    background: var(--light-mint);
+    transform: translateY(-4px);
+    background: linear-gradient(135deg, var(--light-mint) 0%, #d4e6a0 100%);
     color: var(--deep-blue);
+    box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
+}
+
+.add-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px -4px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon styling */
+.add-btn i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.add-btn:hover i {
+    transform: scale(1.1) rotate(2deg);
+}
+
+/* Disabled state (if needed) */
+.add-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
 }
 
 .profile-edit-controls {
@@ -865,11 +940,11 @@ body {
 }
 
 .supervision-status-badge.completed {
-    background: linear-gradient(135deg, #2980b9, #1a5276);
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
 }
 
 .supervision-status-badge.not-completed {
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    background: linear-gradient(135deg, #cb2d3e, #ef473a);
 }
 
 .supervision-content {
@@ -1258,32 +1333,73 @@ footer {
     border-radius: 32px !important;
 }
 
+/* ===== Minimal Premium Modal ===== */
 .modal-content {
-    border-radius: 32px !important;
+    border-radius: 28px !important;
     border: none !important;
-    box-shadow: var(--shadow-lg) !important;
-    background: white !important;
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.2) !important;
+    background: linear-gradient(135deg, #1e1e1e, #2c2c2c) !important;
     overflow: hidden !important;
 }
 
 .modal-header {
-    background: linear-gradient(135deg, #1e1e1e, #333333) !important;
+    background: transparent !important;
     color: white !important;
-    border-radius: 32px 32px 0 0 !important;
-    padding: 1.5rem 2rem !important;
-    border-bottom: none !important;
+    padding: 1.5rem 2rem 1rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.modal-header .modal-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.modal-header .modal-title i {
+    color: #B5E18B;
+    margin-right: 0.5rem;
 }
 
 .modal-body {
-    padding: 2rem !important;
+    padding: 1.5rem 2rem !important;
     background: white !important;
 }
 
 .modal-footer {
-    border-top: 1px solid rgba(40, 57, 108, 0.1) !important;
-    padding: 1.5rem 2rem !important;
+    border-top: 1px solid #eef2f6 !important;
+    padding: 1rem 2rem !important;
     background: white !important;
-    border-radius: 0 0 32px 32px !important;
+    border-radius: 0 0 28px 28px !important;
+}
+
+/* Buttons */
+.modal-footer .modal-btn-cancel {
+    background: transparent;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 40px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+
+.modal-footer .modal-btn-cancel:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+.modal-footer .modal-btn-save {
+    background: #1e1e1e;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    padding: 0.5rem 1.8rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+.modal-footer .modal-btn-save:hover {
+    background: #2d2d2d;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
 }
 
 #loginModal .modal-content {
@@ -3110,78 +3226,235 @@ body {
     color: white;
 }
 
-/* ===== Degree Breakdown ===== */
+/* ===== Degree Breakdown – Premium ===== */
 .degree-breakdown {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.8rem;
     flex-wrap: wrap;
     margin-top: 0.5rem;
     margin-bottom: 1.5rem;
 }
 
 .degree-badge {
-    background: var(--bg-light);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
     color: var(--deep-blue);
-    padding: 0.3rem 1rem;
-    border-radius: 20px;
+    padding: 0.5rem 1.2rem;
+    border-radius: 40px;
     font-size: 0.85rem;
-    font-weight: 500;
-    border: 1px solid rgba(40, 57, 108, 0.15);
+    font-weight: 600;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.3px;
 }
 
-/* ===== Supervision Overview ===== */
+/* Subtle hover effect */
+.degree-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    background: white;
+}
+
+/* Optional: Different colors for different degree types */
+.degree-badge[data-degree="PhD"],
+.degree-badge[data-degree*="PhD"] {
+    background: linear-gradient(135deg, #e8f4f8, #d1ecf1);
+    color: #0c5460;
+}
+
+.degree-badge[data-degree="Master"],
+.degree-badge[data-degree*="Master"] {
+    background: linear-gradient(135deg, #e8f0fe, #d4e0f7);
+    color: #1a3a6b;
+}
+
+.degree-badge[data-degree="Undergraduate"],
+.degree-badge[data-degree*="Bachelor"] {
+    background: linear-gradient(135deg, #eaf7ea, #d4edda);
+    color: #155724;
+}
+
+.degree-badge[data-degree="Other"],
+.degree-badge[data-degree*="Other"] {
+    background: linear-gradient(135deg, #fef9e7, #fef3cd);
+    color: #856404;
+}
+
+/* Adding a subtle icon before the number */
+.degree-badge strong {
+    font-size: 1rem;
+    font-weight: 800;
+    margin-right: 0.2rem;
+    color: inherit;
+}
+
+/* ===== Supervision Overview – Enhanced Minimal Premium ===== */
 .supervision-overview {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
-    margin: 1.5rem 0 2rem;
+    margin: 2rem 0 2.5rem;
     flex-wrap: wrap;
 }
 
 .stat-item {
-    background: white;
-    border-radius: 20px;
-    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border-radius: 24px;
+    padding: 1.5rem 2rem;
     text-align: center;
-    box-shadow: var(--shadow-sm);
-    min-width: 130px;
-    transition: transform 0.2s ease;
-    border: 1px solid rgba(40, 57, 108, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    min-width: 140px;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle top glow on hover */
+.stat-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.stat-item:hover::after {
+    opacity: 1;
 }
 
 .stat-item:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.98);
+    border-color: rgba(255, 255, 255, 0.8);
 }
 
 .stat-number {
     display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--deep-blue);
-    line-height: 1.2;
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.02em;
 }
 
 .stat-label {
     display: block;
-    font-size: 0.85rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 600;
     color: var(--text-light);
-    margin-top: 0.3rem;
-    font-weight: 500;
+    opacity: 0.8;
 }
 
-/* Colour accents for completed / not completed */
+/* ===== Premium Colour Accents ===== */
 .stat-item.completed .stat-number {
     color: #2980b9;
+    text-shadow: 0 2px 8px rgba(41, 128, 185, 0.15);
 }
 
 .stat-item.not-completed .stat-number {
     color: #e74c3c;
+    text-shadow: 0 2px 8px rgba(231, 76, 60, 0.15);
 }
 
 .stat-item.other .stat-number {
     color: #8c7a6b;
+    text-shadow: 0 2px 8px rgba(140, 122, 107, 0.15);
+}
+
+/* ===== Optional: Add subtle icon before number ===== */
+.stat-number::before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    transition: width 0.2s ease;
+}
+
+.stat-item:hover .stat-number::before {
+    width: 0;
+}
+
+/* Specific icons for each status (optional - remove if not wanted) */
+.stat-item.completed .stat-number::before {
+    content: '✓ ';
+    width: auto;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.stat-item.not-completed .stat-number::before {
+    content: '○ ';
+    width: auto;
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+
+.stat-item.other .stat-number::before {
+    content: '• ';
+    width: auto;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .supervision-overview {
+        gap: 1rem;
+    }
+    
+    .stat-item {
+        padding: 1rem 1.25rem;
+        min-width: 110px;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .stat-number::before {
+        font-size: 1.5rem !important;
+    }
+    
+    .stat-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .supervision-overview {
+        gap: 0.75rem;
+    }
+    
+    .stat-item {
+        padding: 0.75rem 0.9rem;
+        min-width: 80px;
+        border-radius: 18px;
+    }
+    
+    .stat-number {
+        font-size: 1.6rem;
+    }
+    
+    .stat-number::before {
+        font-size: 1.2rem !important;
+    }
+    
+    .stat-label {
+        font-size: 0.55rem;
+        letter-spacing: 0.5px;
+    }
 }
 
 /* ============================================================
@@ -4376,4 +4649,54 @@ html {
     background-position: center;
     background-repeat: no-repeat;
   }
+}
+
+/* Edit social link button */
+.edit-social-link {
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+    background: linear-gradient(135deg, var(--deep-blue), #1e2f5a);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Desktop: show on hover */
+@media (min-width: 769px) {
+    .edit-social-link {
+        opacity: 0;
+    }
+    .social-link-wrapper:hover .edit-social-link {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+/* Mobile: always visible */
+@media (max-width: 768px) {
+    .edit-social-link {
+        opacity: 1;
+        width: 32px;
+        height: 32px;
+        bottom: -12px;
+        right: -12px;
+        font-size: 0.8rem;
+    }
+}
+
+.edit-social-link:hover {
+    background: linear-gradient(135deg, var(--soft-green), #9fd46b);
+    color: var(--deep-blue);
+    transform: scale(1.1);
 }
