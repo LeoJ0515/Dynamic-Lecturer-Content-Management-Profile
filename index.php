@@ -789,7 +789,33 @@ $researchAreas = getSupabaseData('research_areas', [], 'display_order.asc') ?: [
                                             if (!empty($word))
                                                 $initials .= strtoupper(substr($word, 0, 1));
                                         $initials = substr($initials, 0, 2) ?: 'ST';
-                                        $colors = ['#28396C', '#B5E18B', '#F0FFC2', '#8C7A6B', '#4A3B32'];
+                                        $colors = $colors = [
+                                            '#E74C3C',
+                                            '#3498DB',
+                                            '#2ECC71',
+                                            '#F39C12',
+                                            '#9B59B6',
+                                            '#1ABC9C',
+                                            '#E67E22',
+                                            '#34495E',
+                                            '#16A085',
+                                            '#C0392B',
+                                            '#2980B9',
+                                            '#27AE60',
+                                            '#D35400',
+                                            '#8E44AD',
+                                            '#7F8C8D',
+                                            '#F1C40F',
+                                            '#BDC3C7',
+                                            '#2C3E50',
+                                            '#D2527F',
+                                            '#5D6D7E',
+                                            '#48C9B0',
+                                            '#F5B041',
+                                            '#A569BD',
+                                            '#EB984E'
+                                        ];
+                                        ;
                                         $avatarColor = $colors[abs(crc32($studentName)) % count($colors)];
                                         ?>
                                         <div class="supervision-avatar" style="background-color: <?php echo $avatarColor; ?>;">
@@ -1690,7 +1716,12 @@ $researchAreas = getSupabaseData('research_areas', [], 'display_order.asc') ?: [
                 let initials = '';
                 studentName.split(' ').forEach(w => { if (w) initials += w[0].toUpperCase(); });
                 initials = initials.substring(0, 2) || 'ST';
-                const colors = ['#28396C', '#B5E18B', '#F0FFC2', '#8C7A6B', '#4A3B32'];
+                const colors = [
+                    '#E74C3C', '#3498DB', '#2ECC71', '#F39C12', '#9B59B6', '#1ABC9C',
+                    '#E67E22', '#34495E', '#16A085', '#C0392B', '#2980B9', '#27AE60',
+                    '#D35400', '#8E44AD', '#7F8C8D', '#F1C40F', '#BDC3C7', '#2C3E50',
+                    '#D2527F', '#5D6D7E', '#48C9B0', '#F5B041', '#A569BD', '#EB984E'
+                ];
                 const avatarColor = colors[hashCode(studentName) % colors.length];
                 const statusClass = (item.status || 'current').toLowerCase().trim().replace(/\s+/g, '-');
                 const statusText = item.status || 'Current';
@@ -2962,6 +2993,71 @@ $researchAreas = getSupabaseData('research_areas', [], 'display_order.asc') ?: [
         if (typeof showNotification !== 'function') {
             window.showNotification = function (msg, type) {
                 alert(msg);
+            };
+        }
+
+        // Global function for image preview (used by the upload modal)
+        function previewImage(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (ev) {
+                    const preview = document.querySelector('#imagePreview img');
+                    if (preview) {
+                        preview.src = ev.target.result;
+                        preview.style.display = 'block';
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // === GLOBAL FALLBACKS (in case any function is missing) ===
+        if (typeof previewImage === 'undefined') {
+            window.previewImage = function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (ev) {
+                        const preview = document.querySelector('#imagePreview img');
+                        if (preview) {
+                            preview.src = ev.target.result;
+                            preview.style.display = 'block';
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+        }
+
+        if (typeof showNotification === 'undefined') {
+            window.showNotification = function (msg, type) {
+                console.warn('Missing showNotification:', msg, type);
+                alert(msg);  // fallback
+            };
+        }
+
+        if (typeof escapeHtml === 'undefined') {
+            window.escapeHtml = function (str) {
+                if (!str) return '';
+                return String(str).replace(/[&<>]/g, function (m) {
+                    if (m === '&') return '&amp;';
+                    if (m === '<') return '&lt;';
+                    if (m === '>') return '&gt;';
+                    return m;
+                });
+            };
+        }
+
+        if (typeof generateFormFields === 'undefined') {
+            window.generateFormFields = function (table, data) {
+                return '<div class="alert alert-danger">Error: generateFormFields not defined</div>';
+            };
+        }
+
+        if (typeof formatTableName === 'undefined') {
+            window.formatTableName = function (table) {
+                return table.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
             };
         }
 
