@@ -84,7 +84,7 @@ CREATE TABLE publications (
 );
 
 -- 8. SUPERVISION TABLE
-CREATE TABLE supervision (
+CREATE TABLE IF NOT EXISTS supervision (
     id SERIAL PRIMARY KEY,
     student_name VARCHAR(200),
     thesis_title VARCHAR(500),
@@ -93,6 +93,7 @@ CREATE TABLE supervision (
     start_year INTEGER,
     completion_year INTEGER,
     status VARCHAR(50),
+    degree TEXT,
     display_order INTEGER DEFAULT 0,
     created_at TIMESTAMP DEFAULT NOW()
 );
