@@ -157,55 +157,67 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
 /* Home - 浅绿色 */
 .nav-link[href="#home"]:hover,
 .nav-link[href="#home"].active {
-    background: var(--soft-green) !important;
-    color: var(--deep-blue) !important;
+    background: rgba(181, 225, 139, 0.25) !important;
+    color: #6a994e !important;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(40, 57, 108, 0.2);
+    box-shadow: 0 4px 15px rgba(181, 225, 139, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 /* Teaching - 蓝色 */
 .nav-link[href="#teaching"]:hover,
 .nav-link[href="#teaching"].active {
-    background: #3498db !important;
-    color: white !important;
+    background: rgba(52, 152, 219, 0.2) !important;
+    color: #2471a3 !important;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 /* Research - 橙色 */
 .nav-link[href="#research"]:hover,
 .nav-link[href="#research"].active {
-    background: #e67e22 !important;
-    color: white !important;
+    background: rgba(230, 126, 34, 0.2) !important;
+    color: #ba4a00 !important;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
+    box-shadow: 0 4px 15px rgba(230, 126, 34, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 /* Supervision - 绿色 */
 .nav-link[href="#supervision"]:hover,
 .nav-link[href="#supervision"].active {
-    background: #27ae60 !important;
-    color: white !important;
+    background: rgba(39, 174, 96, 0.2) !important;
+    color: #1e8449 !important;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 /* Publications - 紫色 */
 .nav-link[href="#publications"]:hover,
 .nav-link[href="#publications"].active {
-    background: #9b59b6 !important;
-    color: white !important;
+    background: rgba(155, 89, 182, 0.2) !important;
+    color: #7d3c98 !important;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3);
+    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 /* Others - 红色 */
 .nav-link[href="#others"]:hover,
 .nav-link[href="#others"].active {
-    background: #c0392b !important;
-    color: white !important;
+    background: rgba(192, 57, 43, 0.2) !important;
+    color: #922b21 !important;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(192, 57, 43, 0.3);
+    box-shadow: 0 4px 15px rgba(192, 57, 43, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 /* 图标悬停放大效果 */
@@ -482,24 +494,39 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
 
 /* 各 Section 专属激活色（优先级更高） */
 .nav-link[href="#teaching"].active {
-    background: #3498db !important;
-    color: white !important;
+    background: rgba(52, 152, 219, 0.25) !important;
+    color: #2471a3 !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 18px rgba(52, 152, 219, 0.2);
 }
 .nav-link[href="#research"].active {
-    background: #e67e22 !important;
-    color: white !important;
+    background: rgba(230, 126, 34, 0.25) !important;
+    color: #ba4a00 !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 18px rgba(230, 126, 34, 0.2);
 }
 .nav-link[href="#supervision"].active {
-    background: #27ae60 !important;
-    color: white !important;
+    background: rgba(39, 174, 96, 0.25) !important;
+    color: #1e8449 !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 18px rgba(39, 174, 96, 0.2);
 }
 .nav-link[href="#publications"].active {
-    background: #9b59b6 !important;
-    color: white !important;
+    background: rgba(155, 89, 182, 0.25) !important;
+    color: #7d3c98 !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 18px rgba(155, 89, 182, 0.2);
 }
 .nav-link[href="#others"].active {
-    background: #c0392b !important;
-    color: white !important;
+    background: rgba(192, 57, 43, 0.25) !important;
+    color: #922b21 !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 18px rgba(192, 57, 43, 0.2);
 }
 
 /* 登录/登出按钮保持原有渐变，不覆盖（如果有 active 状态） */
