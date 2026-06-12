@@ -75,6 +75,7 @@ Copy the Project URL and the anon/public key.
 Open database.php and login.php replace the placeholders:
 define('SUPABASE_URL', 'https://your-project.supabase.co');
 define('SUPABASE_KEY', 'your-anon-key');
+define('SUPABASE_SERVICE_KEY', 'your-service-key'); 
 
 ```
 
@@ -85,4 +86,7 @@ Start Apache.
 Visit http://localhost/LecturerProfile/index.php
 ```
 
-
+### Hosting Website 
+```bash
+Just copy and paste all file into the file manager of created domain account
+```
