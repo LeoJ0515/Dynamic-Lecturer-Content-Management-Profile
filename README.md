@@ -60,8 +60,8 @@ Open your Supabase project → SQL Editor.
 Run the SQL script from the file database.sql (included in this repository) to create all tables:
 users, profile, teaching, research_projects, publications, supervision, awards, appointments, invited_talks, research_areas.
 
-dont forget to insert your own email and password , is bottom there😊
-and disable RLS
+dont forget to insert your own email and password , is bottom there😊 and disable RLS
+At the same time , from left toolsbar --> storage --> + New Bucket （Set As Publick Bucket) for storing image
 ```
 
 ### Step 3: Get your Supabase API credentials
