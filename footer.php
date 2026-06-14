@@ -289,26 +289,25 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
     .nav-link span { font-size: 0.45rem; }
 }
 
-/* ===== LOGOUT MODAL (Updated Palette) ===== */
+/* ========== LOGOUT MODAL（高级感深色毛玻璃版） ========== */
 .logout-modal-content {
     border-radius: 32px !important;
     overflow: hidden !important;
-    border: none !important;
-    box-shadow: var(--shadow-lg) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    background: rgba(20, 20, 20, 0.85) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+    color: #fff !important;
 }
 
 .logout-modal-header {
-    background: #1e1e1e !important;
-    padding: 1.5rem 2rem !important;
-    border-bottom: none !important;
+    background: transparent !important;
+    padding: 1.8rem 2rem 1rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
-}
-
-/* 可选：保持关闭按钮背景半透明，但文字白色 */
-.logout-close-btn {
-    /* 已有样式基本符合，无需修改，因为背景是 rgba(255,255,255,0.2) 在深色上依然可见 */
 }
 
 .logout-modal-header .modal-title {
@@ -322,71 +321,75 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
 }
 
 .logout-modal-header .modal-title i {
-    font-size: 1.4rem !important;
+    color: #ff6b6b;  /* 柔和的红色警示 */
+    font-size: 1.5rem;
 }
 
 .logout-close-btn {
     width: 38px !important;
     height: 38px !important;
     border-radius: 50% !important;
-    background: rgba(255, 255, 255, 0.2) !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
     color: white !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     cursor: pointer !important;
-    transition: all 0.3s ease !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     padding: 0 !important;
     margin: 0 !important;
 }
 
 .logout-close-btn i {
-    font-size: 1.1rem !important;
+    font-size: 1.2rem !important;
 }
 
 .logout-close-btn:hover {
-    background: rgba(255, 255, 255, 0.3) !important;
+    background: rgba(255, 255, 255, 0.25) !important;
     transform: rotate(90deg) scale(1.1) !important;
 }
 
+/* 身体部分保持深色透明 */
 .logout-modal-body {
     padding: 2.5rem 2rem !important;
-    background: white !important;
+    background: transparent !important;
     text-align: center !important;
+    color: rgba(255, 255, 255, 0.9) !important;
 }
 
 .logout-icon-wrapper {
     width: 90px !important;
     height: 90px !important;
     border-radius: 50% !important;
-    background: linear-gradient(135deg, rgba(40, 57, 108, 0.1), rgba(181, 225, 139, 0.1)) !important;
+    background: rgba(255, 107, 107, 0.15) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     margin: 0 auto 1.5rem !important;
     animation: pulseIcon 2s ease-in-out infinite !important;
+    border: 1px solid rgba(255, 107, 107, 0.3);
 }
 
 @keyframes pulseIcon {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(40, 57, 108, 0.3); }
-    50% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(40, 57, 108, 0); }
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4); }
+    50% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(255, 107, 107, 0); }
 }
 
 .logout-icon-wrapper i {
     font-size: 3.5rem !important;
-    color: #c0392b !important;
+    color: #ff6b6b !important;
 }
 
 .logout-title {
-    color: var(--deep-blue) !important;
+    color: white !important;
     font-size: 1.8rem !important;
     font-weight: 700 !important;
     margin-bottom: 0.75rem !important;
 }
 
 .logout-message {
-    color: var(--text-light) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
     font-size: 1rem !important;
     line-height: 1.6 !important;
     max-width: 280px !important;
@@ -395,8 +398,8 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
 
 .logout-modal-footer {
     padding: 1.5rem 2rem !important;
-    border-top: 1px solid rgba(40, 57, 108, 0.1) !important;
-    background: white !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    background: transparent !important;
     display: flex !important;
     gap: 1rem !important;
     justify-content: center !important;
@@ -413,50 +416,86 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
     justify-content: center !important;
     gap: 0.5rem !important;
     cursor: pointer !important;
-    transition: all 0.3s ease !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     min-width: 130px !important;
+    position: relative;
+    overflow: hidden;
 }
 
+/* 取消按钮 */
 .logout-btn-cancel {
-    background: transparent !important;
-    color: var(--deep-blue) !important;
-    border: 2px solid var(--soft-green) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
 .logout-btn-cancel:hover {
-    border-color: var(--deep-blue) !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
     transform: translateY(-2px) !important;
-    box-shadow: var(--shadow-sm) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3) !important;
 }
 
+/* 确认退出按钮（红色渐变 + 扫光） */
 .logout-btn-confirm {
-    background: linear-gradient(135deg, #c0392b, #d96868) !important;
+    background: linear-gradient(135deg, #c0392b, #e74c3c) !important;
     color: white !important;
-    box-shadow: 0 8px 20px rgba(192, 57, 43, 0.25) !important;
+    box-shadow: 0 8px 22px rgba(192, 57, 43, 0.4) !important;
 }
 
 .logout-btn-confirm:hover {
     transform: translateY(-3px) !important;
-    box-shadow: 0 15px 30px rgba(192, 57, 43, 0.35) !important;
+    box-shadow: 0 14px 32px rgba(192, 57, 43, 0.6) !important;
 }
 
-/* Loading overlay */
-.loading-overlay {
-    position: fixed;
+/* 扫光效果（与保存按钮一致） */
+.logout-btn-confirm::before {
+    content: '';
+    position: absolute;
     top: 0;
-    left: 0;
+    left: -100%;
     width: 100%;
     height: 100%;
-    background: rgba(40, 57, 108, 0.95);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.logout-btn-confirm:hover::before {
+    left: 100%;
+}
+
+.logout-btn-confirm i,
+.logout-btn-confirm span {
+    position: relative;
+    z-index: 2;
+}
+
+/* 确保取消按钮也有图标样式（若使用伪元素可自动生成，但建议HTML中添加） */
+.logout-btn-cancel i {
+    font-size: 1.1rem;
+    transition: transform 0.3s;
+}
+.logout-btn-cancel:hover i {
+    transform: translateX(-3px);
+}
+
+/* ========== Loading Overlay（深色渐变） ========== */
+.loading-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(10, 15, 10, 0.92);   /* 匹配仪表板黑底 */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 1055;
-    color: white;
-    backdrop-filter: blur(5px);
+    color: #00ff41;                       /* 绿色终端风 */
+    backdrop-filter: blur(6px);
     opacity: 0;
     transition: opacity 0.3s ease;
+    font-family: 'Courier New', monospace;
 }
 
 .loading-overlay.show {
@@ -466,25 +505,25 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
 .loading-spinner {
     width: 50px;
     height: 50px;
-    border: 4px solid rgba(255, 255, 255, 0.2);
-    border-top: 4px solid #fff;
+    border: 3px solid rgba(0, 255, 65, 0.2);
+    border-top: 3px solid #00ff41;
     border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-bottom: 1rem;
+    animation: spin 0.9s linear infinite;
+    margin-bottom: 1.2rem;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
+/* 响应式 */
 @media (max-width: 576px) {
     .logout-modal-header { padding: 1.2rem 1.5rem !important; }
     .logout-modal-body { padding: 2rem 1.5rem !important; }
     .logout-modal-footer { padding: 1.2rem 1.5rem !important; flex-direction: column !important; }
     .logout-btn { width: 100% !important; }
 }
-
 /* ===== 导航栏激活按钮跟随 Section 主题色 ===== */
 /* 默认激活样式（Home 及未匹配项） */
 .nav-link.active {
