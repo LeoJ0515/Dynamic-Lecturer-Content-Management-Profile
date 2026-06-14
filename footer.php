@@ -524,6 +524,7 @@ $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
     .logout-modal-footer { padding: 1.2rem 1.5rem !important; flex-direction: column !important; }
     .logout-btn { width: 100% !important; }
 }
+
 /* ===== 导航栏激活按钮跟随 Section 主题色 ===== */
 /* 默认激活样式（Home 及未匹配项） */
 .nav-link.active {
