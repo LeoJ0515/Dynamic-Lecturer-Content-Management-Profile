@@ -515,31 +515,52 @@ body {
     font-size: 1.3rem;
 }
 
-/* ===== CONTROL BUTTONS ===== */
+/* ===== 高级感控制按钮（简约现代） ===== */
 .control-btn {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: var(--transition-smooth);
-    color: white;
-    background: var(--soft-green);
-    box-shadow: var(--shadow-sm);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #4a4a4a;
+    background: rgba(0, 0, 0, 0.04);
+    box-shadow: none;
+    position: relative;
 }
 
+/* 编辑按钮 */
+.control-btn.edit {
+    background: rgba(0, 0, 0, 0.04);
+    color: #4a4a4a;
+}
+
+/* 删除按钮 */
 .control-btn.delete {
-    background: #e76f51;
+    background: rgba(0, 0, 0, 0.04);
+    color: #c0392b;
 }
 
+/* 悬停效果 */
 .control-btn:hover {
-    transform: scale(1.1) translateY(-2px);
-    box-shadow: var(--shadow-md);
-    background: var(--deep-blue);
+    background: #1a1a1a;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.control-btn.delete:hover {
+    background: #e74c3c;
     color: white;
+}
+
+/* 点击反馈 */
+.control-btn:active {
+    transform: translateY(0) scale(0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* ===== Add Button – Premium ===== */
@@ -1153,28 +1174,36 @@ body {
 
 .upload-overlay {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: var(--deep-blue);
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    bottom: 12px;
+    right: 12px;
+    background: transparent;                /* 透明 */
+    border: none;
+    color: rgba(255, 255, 255, 0.85);      /* 半透明白色图标 */
+    font-size: 2rem;                       /* 与 .bg-upload-btn 一致 */
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+    padding: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    width: 48px;                           /* 保持圆形点击区域 */
+    height: 48px;
+    border-radius: 50%;
     opacity: 0;
-    transition: var(--transition-smooth);
-    border: 3px solid white;
-    box-shadow: var(--shadow-sm);
+    transform: scale(0.9);
+    z-index: 5;
 }
 
 .image-upload-container:hover .upload-overlay {
     opacity: 1;
-    transform: scale(1.1);
-    background: var(--soft-green);
-    color: var(--deep-blue);
+    transform: scale(1);
+}
+
+.upload-overlay:hover {
+    color: white;
+    transform: scale(1.15);
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
 }
 
 /* ===== FOOTER ===== */
@@ -1239,48 +1268,92 @@ footer {
     background: rgba(66, 244, 99, 0.1);
 }
 
-/* ===== NOTIFICATIONS & LOADING ===== */
+/* ===== 高级感通知（毛玻璃 + 微光） ===== */
 .notification {
     position: fixed;
     top: 24px;
     right: 24px;
     padding: 1rem 2rem;
-    background: white;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     color: var(--deep-blue);
     border-radius: 60px;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.6);
     z-index: 10001;
-    animation: slideInRight 0.4s ease;
+    animation: slideInRight 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
     display: flex;
     align-items: center;
     gap: 0.8rem;
     border-left: 4px solid;
+    font-weight: 500;
+    letter-spacing: -0.01em;
 }
 
 .notification.success {
-    border-left-color: #28a745;
+    border-left-color: #10b981;
+    background: rgba(240, 253, 244, 0.95);
 }
 
 .notification.error {
-    border-left-color: #e76f51;
+    border-left-color: #ef4444;
+    background: rgba(254, 242, 242, 0.95);
 }
 
 .notification.info {
     border-left-color: var(--soft-green);
+    background: rgba(248, 252, 242, 0.95);
 }
 
+/* 图标自动添加（如果使用了 i 标签） */
+.notification i {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    flex-shrink: 0;
+}
+
+.notification.success i { color: #10b981; }
+.notification.error i   { color: #ef4444; }
+.notification.info i    { color: var(--soft-green); }
+
+/* 右侧关闭按钮（若需要） */
+.notification .notif-close {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: inherit;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    font-size: 1rem;
+}
+.notification .notif-close:hover {
+    opacity: 1;
+}
+
+/* 入场动画 */
 @keyframes slideInRight {
     from {
-        transform: translateX(100%) scale(0.8);
+        transform: translateX(calc(100% + 40px)) scale(0.9);
         opacity: 0;
     }
-
     to {
         transform: translateX(0) scale(1);
         opacity: 1;
     }
 }
 
+/* 移动端适配 */
+@media (max-width: 576px) {
+    .notification {
+        top: 16px;
+        right: 16px;
+        left: 16px;
+        width: auto;
+        border-radius: 20px;
+        padding: 0.9rem 1.2rem;
+    }
+}
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -1313,9 +1386,10 @@ footer {
     }
 }
 
-/* ===== 模态框样式 ===== */
+/* ========== 模态框全局重置 ========== */
 .modal {
-    background: transparent !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: blur(8px);
 }
 
 .modal-dialog {
@@ -1323,172 +1397,140 @@ footer {
     border-radius: 32px !important;
 }
 
-/* ===== 模态框样式（统一深色主题 #1e1e1e 渐变） ===== */
-.modal {
-    background: transparent !important;
-}
-
-.modal-dialog {
-    background: transparent !important;
-    border-radius: 32px !important;
-}
-
-/* ===== Minimal Premium Modal ===== */
 .modal-content {
-    border-radius: 28px !important;
-    border: none !important;
-    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.2) !important;
-    background: linear-gradient(135deg, #1e1e1e, #2c2c2c) !important;
-    overflow: hidden !important;
+    background: rgba(20, 20, 20, 0.85) !important;  /* 半透明深色 */
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 32px !important;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+    overflow: hidden;
+    color: #fff;
 }
 
+/* 头部 */
 .modal-header {
     background: transparent !important;
-    color: white !important;
-    padding: 1.5rem 2rem 1rem !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 1.8rem 2rem 1rem !important;
+    color: white;
 }
 
 .modal-header .modal-title {
-    font-weight: 700;
-    font-size: 1.25rem;
+    font-weight: 600;
+    font-size: 1.3rem;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .modal-header .modal-title i {
-    color: #B5E18B;
-    margin-right: 0.5rem;
+    color: #00ff41;              /* 绿色点缀 */
+    font-size: 1.5rem;
 }
 
-.modal-body {
-    padding: 1.5rem 2rem !important;
-    background: white !important;
-}
-
-.modal-footer {
-    border-top: 1px solid #eef2f6 !important;
-    padding: 1rem 2rem !important;
-    background: white !important;
-    border-radius: 0 0 28px 28px !important;
-}
-
-/* Buttons */
-.modal-footer .modal-btn-cancel {
-    background: transparent;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 40px;
-    padding: 0.5rem 1.5rem;
-    font-weight: 500;
-    transition: all 0.25s ease;
-}
-
-.modal-footer .modal-btn-cancel:hover {
-    background: #f8fafc;
-    border-color: #cbd5e1;
-}
-
-.modal-footer .modal-btn-save {
-    background: #1e1e1e;
-    color: white;
+/* 关闭按钮 */
+.btn-close-custom,
+.modal-header .btn-close {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
     border: none;
-    border-radius: 40px;
-    padding: 0.5rem 1.8rem;
-    font-weight: 600;
-    transition: all 0.25s ease;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1.2rem;
+    filter: none;
 }
 
-.modal-footer .modal-btn-save:hover {
-    background: #2d2d2d;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+.btn-close-custom:hover,
+.modal-header .btn-close:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: rotate(90deg) scale(1.1);
+    opacity: 1;
 }
 
-#loginModal .modal-content {
-    border-radius: 32px !important;
-    overflow: hidden !important;
+/* 主体 */
+.modal-body {
+    padding: 1.8rem 2rem !important;
+    background: transparent !important;
+    color: rgba(255, 255, 255, 0.9);
 }
 
-#loginModal .modal-header {
-    border-radius: 32px 32px 0 0 !important;
+/* 底部 */
+.modal-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 1.2rem 2rem !important;
+    background: transparent !important;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
 }
 
-/* ===== 修复登录模态框输入框显示 ===== */
-#loginModal .input-group-modern {
-    position: relative;
+/* ========== 输入框 ========== */
+.modal-body .form-control-modern,
+.modal-body .form-control {
     width: 100%;
+    padding: 0.9rem 1.2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
 }
 
-#loginModal .input-icon {
+.modal-body .form-control-modern:focus,
+.modal-body .form-control:focus {
+    outline: none;
+    border-color: #00ff41;
+    box-shadow: 0 0 0 4px rgba(0, 255, 65, 0.12);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* 带图标的输入框 */
+.input-group-modern {
+    position: relative;
+}
+
+.input-group-modern .input-icon {
     position: absolute;
     left: 16px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--deep-blue);
-    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1rem;
     z-index: 2;
     pointer-events: none;
 }
 
-#loginModal .form-control-modern {
-    width: 100%;
-    padding: 0.9rem 1rem 0.9rem 2.8rem !important;
-    border: 2px solid rgba(40, 57, 108, 0.1);
-    border-radius: 40px !important;
-    background: var(--bg-light);
-    font-size: 1rem;
-    transition: var(--transition-smooth);
+.input-group-modern .form-control-modern {
+    padding-left: 2.8rem !important;
 }
 
-#loginModal .form-control-modern:focus {
-    border-color: var(--soft-green);
-    box-shadow: 0 0 0 4px rgba(181, 225, 139, 0.15);
-    outline: none;
-    background: white;
+/* 让上传按钮与保存按钮完全一致（若担心权重不够） */
+#uploadBtn {
+    background: linear-gradient(135deg, #0f1f0f, #1a3a1a) !important;
+    color: white !important;
+    border: none;
+    box-shadow: 0 8px 22px rgba(0, 80, 20, 0.3);
 }
-
-/* 移动端进一步优化 */
-@media (max-width: 576px) {
-    #loginModal .form-control-modern {
-        padding: 0.8rem 0.8rem 0.8rem 2.5rem !important;
-        font-size: 0.95rem;
-    }
-
-    #loginModal .input-icon {
-        left: 14px;
-        font-size: 1.1rem;
-    }
+#uploadBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(0, 80, 20, 0.5);
 }
-
-#imageUploadModal .modal-content {
-    border-radius: 32px !important;
-    overflow: hidden !important;
-}
-
-.modal-header .btn-close {
-    filter: brightness(0) invert(1);
-    opacity: 0.8;
-    transition: var(--transition-smooth);
-}
-
-.modal-header .btn-close:hover {
-    opacity: 1;
-    transform: rotate(90deg);
-}
-
-/* ===== MODAL ACTION BUTTONS ===== */
-.modal-action-buttons {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    margin-top: 2.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(40, 57, 108, 0.1);
-}
-
+/* ========== 模态框按钮（高级感升级） ========== */
 .modal-btn {
-    padding: 0.8rem 2rem;
-    border-radius: 50px;
+    padding: 0.5rem 1.4rem;
+    border-radius: 40px;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.80rem;
     letter-spacing: 0.3px;
     border: none;
     display: inline-flex;
@@ -1496,77 +1538,172 @@ footer {
     justify-content: center;
     gap: 0.5rem;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
-    min-width: 140px;
+    min-width: 100px;
 }
 
+/* 取消按钮 */
 .modal-btn-cancel {
-    background: transparent;
-    color: var(--deep-blue);
-    border: 2px solid var(--soft-green);
-    box-shadow: 0 4px 12px rgba(40, 57, 108, 0.05);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
 }
-
 .modal-btn-cancel:hover {
-    border-color: var(--deep-blue);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(40, 57, 108, 0.15);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+.modal-btn-cancel:active {
+    transform: translateY(-1px) scale(0.97);
 }
 
-.modal-btn-save {
-    background: linear-gradient(135deg, #1e1e1e, #333333) !important;
+/* 保存 / 登录按钮 */
+.modal-btn-save,
+.login-btn-modern {
+    background: linear-gradient(135deg, #0f1f0f, #1a3a1a) !important;
     color: white !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    border: none;
+    box-shadow: 0 8px 22px rgba(0, 80, 20, 0.3);
+}
+.modal-btn-save:hover,
+.login-btn-modern:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(0, 80, 20, 0.5);
 }
 
-.modal-btn-save:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+/* 绿色光晕扩散层（悬停时显现） */
+.modal-btn-save::after,
+.login-btn-modern::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0,255,65,0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    z-index: 0;
+    pointer-events: none;
+}
+.modal-btn-save:hover::after,
+.login-btn-modern:hover::after {
+    opacity: 1;
 }
 
+/* 扫光层 */
+.modal-btn-save::before,
+.login-btn-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: left 0.6s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+.modal-btn-save:hover::before,
+.login-btn-modern:hover::before {
+    left: 100%;
+}
+
+/* 文字和图标置顶 */
+.modal-btn-save span,
+.modal-btn-save i,
+.login-btn-modern span,
+.login-btn-modern i {
+    position: relative;
+    z-index: 2;
+}
+
+/* 按压反馈 */
+.modal-btn-save:active,
+.login-btn-modern:active {
+    transform: translateY(-1px) scale(0.97);
+    box-shadow: 0 6px 18px rgba(0, 80, 20, 0.3);
+}
+
+/* 图标微动效 */
+.modal-btn-save i,
+.login-btn-modern i {
+    transition: transform 0.3s;
+}
+.modal-btn-save:hover i,
+.login-btn-modern:hover i {
+    transform: scale(1.15);
+}
+
+/* 加载状态 */
+.modal-btn-save.loading,
+.login-btn-modern.loading {
+    pointer-events: none;
+    opacity: 0.9;
+}
+.modal-btn-save.loading i,
+.login-btn-modern.loading i {
+    animation: spin 0.9s linear infinite;
+}
+
+/* 全宽登录按钮 */
 .login-btn-modern {
     width: 100%;
-    padding: 1.2rem 2rem;
-    border: none;
-    border-radius: 60px;
-    background: linear-gradient(135deg, #1e1e1e, #333333) !important;
-    color: white;
-    font-weight: 700;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.8rem;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    padding: 1rem;
     margin-top: 1.5rem;
 }
 
-.login-btn-modern:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.4);
+/* 上传按钮风格统一 */
+#uploadBtn {
+    background: linear-gradient(135deg, #0f1f0f, #1a3a1a) !important;
+    color: white !important;
+    border: none;
+    box-shadow: 0 8px 22px rgba(0, 80, 20, 0.3);
+}
+#uploadBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(0, 80, 20, 0.5);
 }
 
-.btn-close-custom {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s;
+/* 移动端按钮缩小 */
+@media (max-width: 576px) {
+    .modal-btn {
+        padding: 0.5rem 1.3rem;
+        min-width: 90px;
+        font-size: 0.85rem;
+    }
+    .login-btn-modern {
+        padding: 0.9rem;
+    }
 }
 
-.btn-close-custom:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: rotate(90deg) scale(1.1);
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+/* ========== 特定模态框微调 ========== */
+#loginModal .modal-content,
+#imageUploadModal .modal-content {
+    border-radius: 32px !important;
+}
+
+/* 移动端优化 */
+@media (max-width: 576px) {
+    .modal-body {
+        padding: 1.5rem 1.2rem !important;
+    }
+    .modal-header {
+        padding: 1.5rem 1.2rem 0.8rem !important;
+    }
+    .modal-btn {
+        padding: 0.5rem 1.3rem;
+        min-width: 90px;
+    }
 }
 
 /* Publication Card Enhancements */
@@ -2398,9 +2535,9 @@ body {
 
     /* 模态框操作按钮 */
     .modal-btn {
-        padding: 0.6rem 1.2rem !important;
+        padding: 0.5rem 1.3rem !important;
         font-size: 0.85rem !important;
-        min-width: 110px !important;
+        min-width: 90px !important;
     }
 
     .modal-action-buttons {
@@ -3092,7 +3229,7 @@ body {
 }
 
 .research-tag {
-    display: inline-block;
+    display: inline-flex;
     padding: 0.4rem 1.2rem;
     border-radius: 40px;
     color: white;
@@ -3102,7 +3239,7 @@ body {
     transition: transform 0.2s, box-shadow 0.2s;
     position: relative;
     white-space: nowrap;
-    max-width: 200px;
+    max-width: none;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -3512,26 +3649,62 @@ body {
     }
 }
 
-/* ---- 3. RESEARCH AREAS TAGS ---- */
+/* ---- 3. RESEARCH AREAS TAGS (移动端进一步缩小) ---- */
 @media (max-width: 768px) {
     .research-tag {
-        font-size: 0.75rem;
-        padding: 0.3rem 0.8rem;
-        max-width: 150px;
+        font-size: 0.65rem;          /* 从 0.75rem 降至 0.65rem */
+        padding: 0.2rem 0.6rem;      /* 内边距更紧凑 */
+        max-width: none;            /* 最大宽度收窄 */
     }
 
     .add-tag-btn {
-        font-size: 0.75rem;
-        padding: 0.3rem 0.8rem;
+        font-size: 0.65rem;
+        padding: 0.2rem 0.6rem;
     }
 
     .add-tag-form input {
-        max-width: 130px;
-        font-size: 0.75rem;
+        max-width: 110px;
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .add-tag-form button {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
     }
 
     .research-areas-container {
-        gap: 0.5rem;
+        gap: 0.4rem;
+    }
+
+    .research-areas-tags {
+        gap: 0.4rem;
+    }
+
+    /* 标签编辑按钮也稍微缩小 */
+    .tag-edit-controls .control-btn {
+        width: 22px;
+        height: 22px;
+        font-size: 0.6rem;
+    }
+}
+
+/* 针对更小屏幕进一步优化 */
+@media (max-width: 480px) {
+    .research-tag {
+        font-size: 0.6rem;
+        padding: 0.15rem 0.5rem;
+        max-width: none;
+    }
+
+    .add-tag-btn {
+        font-size: 0.6rem;
+        padding: 0.15rem 0.5rem;
+    }
+
+    .add-tag-form input {
+        max-width: 100px;
+        font-size: 0.6rem;
     }
 }
 
@@ -4699,4 +4872,378 @@ html {
     background: linear-gradient(135deg, var(--soft-green), #9fd46b);
     color: var(--deep-blue);
     transform: scale(1.1);
+}
+
+/* 移动端进一步缩小按钮 */
+@media (max-width: 768px) {
+    /* 编辑/删除按钮（标签右上角的圆形小按钮） */
+    .tag-edit-controls {
+        gap: 0.2rem;
+        top: -6px;
+        right: -6px;
+    }
+
+    .tag-edit-controls .control-btn {
+        width: 18px;                     /* 更小 */
+        height: 18px;
+        font-size: 0.55rem;              /* 更小图标文字 */
+        line-height: 1;
+    }
+
+    /* 添加标签按钮 */
+    .add-tag-btn {
+        font-size: 0.65rem;              /* 字体缩小 */
+        padding: 0.3rem 0.8rem;          /* 更紧凑的内边距 */
+        gap: 0.25rem;
+    }
+
+    /* 如果标签本身也需要稍微缩小（可选） */
+    .research-tag {
+        font-size: 0.7rem;
+        padding: 0.35rem 0.9rem;
+    }
+}
+
+/* 更小屏幕（480px 以下）进一步缩小 */
+@media (max-width: 480px) {
+    .tag-edit-controls .control-btn {
+        width: 16px;
+        height: 16px;
+        font-size: 0.5rem;
+    }
+
+    .add-tag-btn {
+        font-size: 0.6rem;
+        padding: 0.25rem 0.7rem;
+    }
+
+    .research-tag {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.7rem;
+    }
+}
+
+/* ========== 全局移动端缩小卡片与内容 ========== */
+@media (max-width: 768px) {
+  /* 卡片网格 */
+  .card-container {
+    gap: 1rem !important;
+    padding: 0.5rem !important;
+  }
+
+  .card-body {
+    padding: 1rem !important;
+  }
+
+  .card-title {
+    font-size: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .card-text {
+    font-size: 0.8rem !important;
+  }
+
+  /* 名称卡片 */
+  .name-card {
+    padding: 1rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .name-card h4 {
+    font-size: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .name-card p {
+    font-size: 0.8rem !important;
+  }
+
+  /* 其他网格 */
+  .others-grid {
+    gap: 1rem !important;
+    padding: 0.5rem !important;
+  }
+
+  .others-card {
+    padding: 1.2rem !important;
+  }
+
+  .others-card h3 {
+    font-size: 1.1rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* 滚动容器 */
+  .scrollable-box {
+    max-height: 350px !important;
+    padding: 0.75rem !important;
+  }
+
+  .scrollable-card-grid {
+    max-height: 400px !important;
+  }
+
+  /* 空状态卡片 */
+  .empty-state-card {
+    padding: 2rem 1.5rem !important;
+  }
+
+  .empty-state-card i {
+    font-size: 2.5rem !important;
+  }
+
+  .empty-state-card h5 {
+    font-size: 1rem !important;
+  }
+
+  .empty-state-card p {
+    font-size: 0.8rem !important;
+  }
+
+  /* 表单输入框 */
+  .form-control,
+  .form-select,
+  .form-control-modern {
+    padding: 0.6rem 1rem !important;
+    font-size: 0.85rem !important;
+    border-radius: 16px !important;
+  }
+
+  .form-label {
+    font-size: 0.75rem !important;
+    margin-bottom: 0.3rem !important;
+  }
+
+  /* 按钮统一缩小 */
+  .add-btn {
+    padding: 0.5rem 1.2rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  .control-btn {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 0.9rem !important;
+  }
+
+  .inline-edit-btn {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 1rem !important;
+  }
+
+  .btn-cancel-modern,
+  .btn-save-modern {
+    padding: 0.7rem 1.5rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* 上传按钮 */
+  .upload-submit-btn {
+    padding: 0.8rem 1.5rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* 模态框按钮 */
+  .modal-btn {
+    padding: 0.5rem 1.3rem !important;
+    font-size: 0.8rem !important;
+    min-width: 90px !important;
+  }
+
+  /* 标签 */
+  .research-tag {
+    font-size: 0.7rem !important;
+    padding: 0.35rem 0.9rem !important;
+  }
+
+  /* 标题 */
+  .section-title h2 {
+    font-size: 1.8rem !important;
+  }
+
+  .section-title {
+    margin-bottom: 2rem !important;
+  }
+
+  /* 英雄区 */
+  .profile-name {
+    font-size: 1.8rem !important;
+  }
+
+  .profile-designation {
+    font-size: 1rem !important;
+    padding: 0.3rem 1.5rem !important;
+  }
+
+  .profile-institution {
+    font-size: 0.9rem !important;
+    padding: 0.3rem 1.5rem !important;
+  }
+
+  .profile-bio {
+    font-size: 0.9rem !important;
+  }
+
+  /* 联系信息 */
+  .contact-info {
+    padding: 1rem 1.2rem !important;
+    gap: 0.8rem !important;
+  }
+
+  .contact-info p {
+    font-size: 0.8rem !important;
+  }
+
+  /* 监督卡片 */
+  .supervision-card {
+    width: 260px !important;
+    padding: 1rem 0.8rem !important;
+  }
+
+  .supervision-student-name {
+    font-size: 0.9rem !important;
+  }
+
+  .supervision-detail {
+    font-size: 0.7rem !important;
+  }
+
+  .supervision-tag {
+    font-size: 0.6rem !important;
+  }
+}
+
+/* 更小屏幕（480px 以下）进一步缩小 */
+@media (max-width: 480px) {
+  .card-body {
+    padding: 0.8rem !important;
+  }
+
+  .card-title {
+    font-size: 0.9rem !important;
+  }
+
+  .card-text {
+    font-size: 0.75rem !important;
+  }
+
+  .research-tag {
+    font-size: 0.65rem !important;
+    padding: 0.3rem 0.7rem !important;
+  }
+
+  .control-btn {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .supervision-card {
+    width: 220px !important;
+    padding: 0.8rem 0.6rem !important;
+  }
+
+  .supervision-student-name {
+    font-size: 0.8rem !important;
+  }
+}
+
+/* ========== 登录失败消息高级感设计 ========== */
+/* 针对登录模态框内的错误提示容器 */
+#loginMessage {
+  /* 移除旧的 alert 基础样式，重新定义 */
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(239, 68, 68, 0.4) !important;
+  border-left: 4px solid #ef4444 !important;
+  border-radius: 16px !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  padding: 0.9rem 1.2rem !important;
+  margin: 1.5rem 0 0.5rem !important;
+  font-weight: 500;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  animation: loginErrorIn 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.15);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* 错误图标（使用 Bootstrap 图标或 FontAwesome） */
+#loginMessage i {
+  font-size: 1.3rem;
+  color: #ef4444;
+  flex-shrink: 0;
+}
+
+/* 隐藏时保持 d-none 或我们自己的过渡 */
+#loginMessage.d-none {
+  display: none !important;
+}
+
+/* 入场动画 */
+@keyframes loginErrorIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* 移动端优化 */
+@media (max-width: 576px) {
+  #loginMessage {
+    font-size: 0.8rem;
+    padding: 0.7rem 1rem !important;
+    margin: 1rem 0 0.2rem !important;
+  }
+}
+
+/* 工具按钮下拉菜单 */
+.tool-dropdown-menu {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 16px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+    padding: 0.5rem 0;
+    min-width: 140px;
+    animation: dropdownFadeIn 0.2s ease;
+}
+.tool-dropdown-menu .dropdown-item {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    transition: background 0.15s;
+    display: flex;
+    align-items: center;
+}
+.tool-dropdown-menu .dropdown-item:hover {
+    background: rgba(0,0,0,0.04);
+    color: var(--deep-blue);
+}
+.tool-dropdown-menu .dropdown-item i {
+    font-size: 1rem;
+    opacity: 0.7;
+}
+@keyframes dropdownFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* 工具按钮保持圆形，颜色可统一用深色或继承 */
+.control-btn.tool-btn {
+    background: rgba(0,0,0,0.06);
+    color: var(--deep-blue);
+}
+.control-btn.tool-btn:hover {
+    background: var(--deep-blue);
+    color: #fff;
 }
