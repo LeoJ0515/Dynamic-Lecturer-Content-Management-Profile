@@ -247,14 +247,15 @@ $researchAreas = getSupabaseData('research_areas', [], 'display_order.asc') ?: [
 
     <?php include 'footer.php'; ?>
 
-    <!-- Login Modal -->
+    <!-- ========== Login Modal ========== -->
     <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"><i class="bi bi-box-arrow-in-right me-2"></i>Login to Portfolio</h5>
-                    <button type="button" class="btn-close-custom" data-bs-dismiss="modal"><i
-                            class="bi bi-x-lg"></i></button>
+                    <button type="button" class="btn-close-custom" data-bs-dismiss="modal">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form id="loginForm">
@@ -278,9 +279,10 @@ $researchAreas = getSupabaseData('research_areas', [], 'display_order.asc') ?: [
                         <button type="submit" class="login-btn-modern" id="loginSubmitBtn">
                             <i class="bi bi-box-arrow-in-right me-2"></i><span>Login to Portfolio</span>
                         </button>
-                        <div class="login-footer">
-                            <p class="text-muted small mt-3 mb-0"><i class="bi bi-shield-lock me-1"></i>Secure login for
-                                admin access only</p>
+                        <div class="login-footer text-center">
+                            <p class="text-white-50 small mt-3 mb-0">
+                                <i class="bi bi-shield-lock me-1"></i>Secure login for admin access only
+                            </p>
                         </div>
                     </form>
                 </div>
@@ -288,13 +290,15 @@ $researchAreas = getSupabaseData('research_areas', [], 'display_order.asc') ?: [
         </div>
     </div>
 
-    <!-- Image Upload Modal -->
+    <!-- ========== Image Upload Modal ========== -->
     <div class="modal fade" id="imageUploadModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"><i class="bi bi-cloud-upload me-2"></i>Upload Image</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close-custom" data-bs-dismiss="modal">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form id="imageUploadForm" enctype="multipart/form-data">
@@ -304,38 +308,45 @@ $researchAreas = getSupabaseData('research_areas', [], 'display_order.asc') ?: [
                             <input type="file" class="form-control" id="imageFile" name="image" accept="image/*"
                                 required>
                         </div>
-                        <!-- 裁剪区域，初始隐藏 -->
                         <div id="cropSection" style="display: none;">
                             <div class="alert alert-info small">
-                                <i class="bi bi-info-circle"></i> Drag & resize the box to select the visible area for
-                                background.
+                                <i class="bi bi-info-circle"></i> Drag & resize the box to select the visible area.
                             </div>
                             <div class="img-container" style="max-height: 400px; overflow: hidden;">
                                 <img id="cropImage" src="" alt="Crop preview" style="max-width: 100%; display: block;">
                             </div>
                         </div>
-                        <!-- 简单预览（保留，但只在没有裁剪时显示） -->
                         <div id="simplePreview" style="display: none;">
                             <div id="imagePreview" class="text-center">
                                 <img src="" alt="Preview"
                                     style="max-width: 100%; max-height: 200px; border-radius: 10px;">
                             </div>
                         </div>
-                        <button type="submit" class="upload-submit-btn" id="uploadBtn">Upload</button>
+                        <!-- 按钮组 -->
+                        <div class="modal-action-buttons">
+                            <button type="button" class="modal-btn modal-btn-cancel" data-bs-dismiss="modal">
+                                <i class="bi bi-x-lg me-2"></i><span>Cancel</span>
+                            </button>
+                            <button type="submit" class="modal-btn modal-btn-save" id="uploadBtn">
+                                <i class="bi bi-cloud-upload me-2"></i><span>Upload</span>
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Content Modal -->
+    <!-- ========== Content Modal ========== -->
     <div class="modal fade" id="contentModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalTitle"><i class="bi bi-pencil-square me-2"></i>Add/Edit Content
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close-custom" data-bs-dismiss="modal">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form id="contentForm">
@@ -343,10 +354,12 @@ $researchAreas = getSupabaseData('research_areas', [], 'display_order.asc') ?: [
                         <input type="hidden" id="contentTable" name="table">
                         <div id="formFields"></div>
                         <div class="modal-action-buttons">
-                            <button type="button" class="modal-btn modal-btn-cancel" data-bs-dismiss="modal"><i
-                                    class="bi bi-x-lg me-2"></i>Cancel</button>
-                            <button type="submit" class="modal-btn modal-btn-save" id="modalSubmitBtn"><i
-                                    class="bi bi-check-lg me-2"></i>Save Changes</button>
+                            <button type="button" class="modal-btn modal-btn-cancel" data-bs-dismiss="modal">
+                                <i class="bi bi-x-lg me-2"></i><span>Cancel</span>
+                            </button>
+                            <button type="submit" class="modal-btn modal-btn-save" id="modalSubmitBtn">
+                                <i class="bi bi-check-lg me-2"></i><span>Save Changes</span>
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -437,12 +450,25 @@ $researchAreas = getSupabaseData('research_areas', [], 'display_order.asc') ?: [
                                             </span>
                                             <?php if ($isLoggedIn): ?>
                                                 <div class="tag-edit-controls">
-                                                    <button class="control-btn edit"
-                                                        onclick="editContent('research_areas', <?php echo $area['id']; ?>)"><i
-                                                            class="bi bi-pencil"></i></button>
-                                                    <button class="control-btn delete"
-                                                        onclick="deleteContent('research_areas', <?php echo $area['id']; ?>)"><i
-                                                            class="bi bi-trash"></i></button>
+                                                    <div class="dropdown">
+                                                        <button class="control-btn tool-btn" data-bs-toggle="dropdown"
+                                                            aria-expanded="false" data-bs-boundary="viewport">
+                                                            <i class="bi bi-three-dots-vertical"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu dropdown-menu-end tool-dropdown-menu">
+                                                            <li><a class="dropdown-item" href="javascript:void(0)"
+                                                                    onclick="editContent('research_areas', <?php echo $area['id']; ?>); return false;">
+                                                                    <i class="bi bi-pencil me-2"></i>Edit
+                                                                </a></li>
+                                                            <li>
+                                                                <hr class="dropdown-divider">
+                                                            </li>
+                                                            <li><a class="dropdown-item text-danger" href="javascript:void(0)"
+                                                                    onclick="deleteContent('research_areas', <?php echo $area['id']; ?>); return false;">
+                                                                    <i class="bi bi-trash me-2"></i>Delete
+                                                                </a></li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             <?php endif; ?>
                                         </div>
@@ -1335,34 +1361,43 @@ $researchAreas = getSupabaseData('research_areas', [], 'display_order.asc') ?: [
                 const data = await response.json();
 
                 if (data.success) {
-                    // 1. Close the login modal gracefully
                     const modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
                     if (modal) modal.hide();
-
-                    // 2. Show a beautiful success toast
                     showLoginSuccessToast('Login successful! Redirecting to dashboard...');
-
-                    // 3. Redirect after a short delay (so user sees the toast)
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 2000);
+                    setTimeout(() => { window.location.reload(); }, 2000);
                 } else {
-                    // Error case – keep modal open and show error inside modal
-                    const messageDiv = document.getElementById('loginMessage');
-                    messageDiv.classList.remove('d-none', 'alert-success');
-                    messageDiv.classList.add('alert-danger');
-                    messageDiv.innerHTML = `<i class="bi bi-exclamation-triangle-fill me-2"></i> ${data.message}`;
+                    showLoginError(data.message);   // 调用统一错误处理
                     submitBtn.classList.remove('loading');
                     submitBtn.innerHTML = originalContent;
                 }
             } catch (error) {
-                const messageDiv = document.getElementById('loginMessage');
-                messageDiv.classList.remove('d-none', 'alert-success');
-                messageDiv.classList.add('alert-danger');
-                messageDiv.innerHTML = '<i class="bi bi-exclamation-triangle-fill me-2"></i> Connection error. Please try again.';
+                showLoginError('Connection error. Please try again.');
                 submitBtn.classList.remove('loading');
                 submitBtn.innerHTML = originalContent;
             }
+        }
+
+        // 统一显示登录错误并自动消失
+        function showLoginError(message) {
+            const messageDiv = document.getElementById('loginMessage');
+            // 清除之前的定时器
+            if (messageDiv._timeout) clearTimeout(messageDiv._timeout);
+
+            // 显示错误
+            messageDiv.innerHTML = `<i class="bi bi-exclamation-triangle-fill me-2"></i> ${message}`;
+            messageDiv.classList.remove('d-none');
+
+            // 4秒后淡出并隐藏
+            messageDiv._timeout = setTimeout(() => {
+                messageDiv.style.opacity = '0';
+                messageDiv.style.transform = 'translateY(-6px) scale(0.98)';
+                setTimeout(() => {
+                    messageDiv.classList.add('d-none');
+                    // 重置内联样式，确保下次显示正常
+                    messageDiv.style.opacity = '';
+                    messageDiv.style.transform = '';
+                }, 400);
+            }, 4000);
         }
 
         // New helper: elegant login success toast
@@ -2836,9 +2871,20 @@ $researchAreas = getSupabaseData('research_areas', [], 'display_order.asc') ?: [
                     const controls = document.createElement('div');
                     controls.className = 'tag-edit-controls';
                     controls.innerHTML = `
-                <button class="control-btn edit" onclick="editContent('research_areas', ${area.id})"><i class="bi bi-pencil"></i></button>
-                <button class="control-btn delete" onclick="deleteContent('research_areas', ${area.id})"><i class="bi bi-trash"></i></button>
-            `;
+    <div class="dropdown">
+        <button class="control-btn tool-btn" data-bs-toggle="dropdown" aria-expanded="false" data-bs-boundary="viewport">
+            <i class="bi bi-three-dots-vertical"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end tool-dropdown-menu">
+            <li><a class="dropdown-item" href="javascript:void(0)" onclick="editContent('research_areas', ${area.id}); return false;">
+                <i class="bi bi-pencil me-2"></i>Edit
+            </a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="javascript:void(0)" onclick="deleteContent('research_areas', ${area.id}); return false;">
+                <i class="bi bi-trash me-2"></i>Delete
+            </a></li>
+        </ul>
+    </div>`;
                     wrapper.appendChild(controls);
                 }
 
